@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'MVC基礎')
+@section('title', 'Controller基礎')
 
 @section('content')
 <div>

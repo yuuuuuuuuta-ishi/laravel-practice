@@ -17,10 +17,17 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $department = ['総務部','経理部', '人事部'. '営業部', '開発部'];
+        $post = ['係長','主任', '一般社員'. '一般社員', '一般社員'];
         return [
-            'code' => str_pad(fake()->numberBetween(1,100), 4, 0, STR_PAD_LEFT),
-            'name' => fake()->name,
-            'password' => fake()->password
+            'code' => str_pad(fake()->numberBetween(1,100), 4, 0, STR_PAD_LEFT)
+            , 'name' => fake()->name
+            , 'password' => fake()->password
+            , 'branch' => fake()->city
+            , 'department' => array_rand($department)
+            , 'post' => array_rand($post)
+            , 'entry_date' => date('yyyy/mm/dd',fake()->date)
+            , 'age' => fake()->numberBetween(18,80)
         ];
     }
 }
