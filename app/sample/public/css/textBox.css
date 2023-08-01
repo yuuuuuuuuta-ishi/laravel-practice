@@ -1,0 +1,41 @@
+.textBox {
+    padding-bottom: 20px;
+    width: 460px;
+}
+.textBox label {
+    display: block;
+    font-size: 14px;
+    padding-bottom: 5px;
+}
+.textBox input[type="text"],
+input[type="password"] {
+    border: 1px solid #1b73ba;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    color: #333;
+    font-size: 13px;
+    padding: 10px;
+    height: 40px;
+    width: 460px;
+}
+
+.textBox input[type="date"] label {
+    position: relative;
+    display: block;
+    font-size: 14px;
+    padding-bottom: 5px;
+}
+
+input[type="date"] {
+    width: 50px;
+
+    /*忘れずに書きましょう。*/
+    position: relative;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}

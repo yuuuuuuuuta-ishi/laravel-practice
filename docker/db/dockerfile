@@ -1,0 +1,5 @@
+FROM postgres:14
+
+COPY ./my.cnf /etc/postgres/conf.d/my.cnf
+
+RUN chmod 644 /etc/postgres/conf.d/my.cnf
