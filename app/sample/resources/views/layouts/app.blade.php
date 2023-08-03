@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="{{ asset('/css/list.css')  }}" >
 <link rel="stylesheet" href="{{ asset('/css/textBox.css')  }}" >
 <link rel="stylesheet" href="{{ asset('/css/header.css')  }}" >
-<link rel="stylesheet" href="{{ asset('/css/error.css')  }}" >
+<link rel="stylesheet" href="{{ asset('/css/message.css')  }}" >
 
     <title>WEBアプリケーション開発課題</title>
 </head>
