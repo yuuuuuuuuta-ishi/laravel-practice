@@ -26,7 +26,7 @@ class UserFactory extends Factory
             , 'branch' => fake()->city
             , 'department' => array_rand($department)
             , 'post' => array_rand($post)
-            , 'entry_date' => date('yyyy/mm/dd',fake()->date)
+            , 'entry_date' => fake()->date
             , 'age' => fake()->numberBetween(18,80)
         ];
     }

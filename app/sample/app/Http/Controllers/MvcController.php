@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\MvcRequest;
 use App\Models\User;
 
 // ログ出力用
@@ -15,14 +15,14 @@ class MvcController extends Controller
         return view('mvc.input');
     }
 
-    public function output(request $request)
+    public function output(MvcRequest $request)
     {
         //リクエスト情報取得
-        $code = $request->input('code');
+        $employeeCode = $request->input('employeeCode');
         $password = $request->input('password');
 
         //usersテーブルを検索
-        $user = User::getUserByUserIdAndPassword($code, $password);
+        $user = User::getUserByUserIdAndPassword($employeeCode, $password);
 
 
         //検索結果の判定

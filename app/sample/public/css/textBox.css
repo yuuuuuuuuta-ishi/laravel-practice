@@ -1,5 +1,5 @@
 .textBox {
-    padding-bottom: 20px;
+    padding-bottom: 5px;
     width: 460px;
 }
 .textBox label {
@@ -16,9 +16,11 @@ input[type="password"] {
     color: #333;
     font-size: 13px;
     padding: 10px;
+    padding-bottom: 5px;
     height: 40px;
     width: 460px;
 }
+
 
 .textBox input[type="date"] label {
     position: relative;
