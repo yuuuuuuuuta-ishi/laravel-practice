@@ -3,9 +3,10 @@
 @section('title', 'MVC基礎')
 
 @section('content')
-    @if ($errors->any())
-        <p class="error">{{ session('errors')->first('errorMessage'); }}</p>
-    @endif
+
+    @error('errorMessage')
+        <p class="error">{{ $message }}</p>
+    @enderror
     <div>
         <h2 class="title_002">社員コードとパスワードを入力してください。</h2>
         <form method="POST" action="/comprehensive/login">
@@ -13,7 +14,7 @@
             <div class="textBox">
                 <label>社員コード</label>
                 <input type="text" name="employeeCode" placeholder="employee code">
-                @error('code')
+                @error('employeeCode')
                     <p class="error">{{ $message }}</p>
                 @enderror
             </div>

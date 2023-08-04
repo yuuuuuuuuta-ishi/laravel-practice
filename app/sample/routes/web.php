@@ -34,11 +34,6 @@ Route::get('/mvc', [App\Http\Controllers\MvcController::class, 'input']);
 ///MVC基礎
 Route::post('/mvc', [App\Http\Controllers\MvcController::class, 'output']);
 
-///MVC基礎
-Route::get('/comprehensive', [App\Http\Controllers\MvcController::class, 'input']);
-///MVC基礎
-Route::post('/mvc', [App\Http\Controllers\MvcController::class, 'output']);
-
 //総合課題
 Route::group(['prefix' => 'comprehensive', 'as' => 'comprehensive.'], function () {
     ///ログインページ
@@ -49,5 +44,5 @@ Route::group(['prefix' => 'comprehensive', 'as' => 'comprehensive.'], function (
     //一覧画面
     Route::get('/work', [App\Http\Controllers\WorkController::class, 'show']);
     //勤務登録
-    Route::post('/work', [App\Http\Controllers\WorkController::class, 'create']);
+    Route::post('/work', [App\Http\Controllers\WorkController::class, 'store']);
 });

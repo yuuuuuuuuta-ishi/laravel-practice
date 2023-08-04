@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\WorkRequest;
 use App\Models\User;
+use App\Models\DayAttendanceInformation;
 use Illuminate\Support\Facades\Log;
-
+use Illuminate\Support\Facades\DB;
 
 class WorkController extends Controller
 {
@@ -15,7 +16,7 @@ class WorkController extends Controller
      */
     public function index()
     {
-        //
+        return view('comprehensive.home');
     }
 
     /**
@@ -31,29 +32,63 @@ class WorkController extends Controller
     public function store(WorkRequest $request)
     {
         //リクエスト情報取得
-        $endTime = $request->input('endTime');
         $startTime = $request->input('startTime');
+        $endTime = $request->input('endTime');
         $details = $request->input('details');
         $employeeCode = $request->input('employeeCode');
 
+
+        log::info($startTime);
+        log::info($endTime);
+        //勤務日取得
+        $workDay = date('Y/m/d', strtotime($startTime));
+
+        //勤務時間の計算
+        $workTime = strtotime($endTime) - strtotime($startTime) / 60/60;
+
         //usersテーブルを検索
         $user = User::selectOneByCode($employeeCode);
-
-
-
-        $message = '入力されたコードまたはパスワードが違います。';
-        //検索結果の判定
         if (is_null($user) || empty($user)) {
-            $message = '入力されたコードまたはパスワードが違います。';
-            return back(400) //1つ前の入力画面に戻す
+            $errorMessage = '対象のユーザーが存在しません';
+            return redirect() //1つ前の入力画面に戻す
                 ->withInput() //入力値を保持する
                 ->with([
-                    'message' => $message,
+                    'errorMessage' => $errorMessage,
                 ]);
         }
 
-        log::info($message);
-        return view('comprehensive.home', ['message' => $message]);
+        //日次勤怠の登録
+        DB::beginTransaction();
+        try {
+            $dayAttendanceInformation = new DayAttendanceInformation();
+            $dayAttendanceInformation->code = $employeeCode;
+            $dayAttendanceInformation->day = $workDay;
+            $dayAttendanceInformation->start_time = $startTime;
+            $dayAttendanceInformation->end_time = $endTime;
+            $dayAttendanceInformation->time = $workTime;
+            $dayAttendanceInformation->details = $details;
+            $dayAttendanceInformation->updated_by = $user->name;
+            $dayAttendanceInformation->created_by = $user->name;
+
+            $dayAttendanceInformation->save();
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            $errorMessage = '勤怠情報の登録に失敗しました';
+            return redirect() //1つ前の入力画面に戻す
+                ->withInput() //入力値を保持する
+                ->with([
+                    'errorMessage' => $errorMessage,
+                ]);
+        }
+
+        $responseData = [
+            'message' => '勤怠情報の登録に成功しました。'
+            , 'employeeCode' => $employeeCode
+        ];
+
+        log::info($responseData);
+        return view('comprehensive.home', ['responseData' => $responseData]);
     }
 
     /**

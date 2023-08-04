@@ -28,10 +28,10 @@ class LoginController extends Controller
         $message = '';
         //検索結果の判定
         if (is_null($user) || empty($user)) {
-            $message = '入力された社員コードまたはパスワードが違います。';
+            $errorMessage = '入力された社員コードまたはパスワードが違います。';
             return back() //1つ前の入力画面に戻す
                 ->withInput() //入力値を保持する
-                ->withErrors(['errorMessage' => $message]);
+                ->withErrors(['errorMessage' => $errorMessage]);
         } else {
             $message = 'ようこそ！' . $user->name . 'さん！';
         }

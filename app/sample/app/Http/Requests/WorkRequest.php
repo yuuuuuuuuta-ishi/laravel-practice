@@ -7,7 +7,7 @@ use App\Http\Requests\CommonRequest;
 class WorkRequest extends CommonRequest
 {
 
-
+    protected $redirect = 'xxx/index';
     /**
      * Get the validation rules that apply to the request.
      *
@@ -16,8 +16,8 @@ class WorkRequest extends CommonRequest
     public function rules(): array
     {
         return [
-            'startTime' => ['required ', 'date_format:H:i']
-            , 'endTime' => ['required ', 'date_format:H:i']
+            'startTime' => ['required ']
+            , 'endTime' => ['required ']
             , 'details' => ['required ', 'string', 'max:200']
 
         ];
