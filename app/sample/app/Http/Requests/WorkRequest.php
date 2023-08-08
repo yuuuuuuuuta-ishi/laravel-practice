@@ -3,11 +3,11 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\CommonRequest;
+use Illuminate\Contracts\Validation\Validator;
 
 class WorkRequest extends CommonRequest
 {
 
-    protected $redirect = 'xxx/index';
     /**
      * Get the validation rules that apply to the request.
      *
@@ -21,5 +21,23 @@ class WorkRequest extends CommonRequest
             , 'details' => ['required ', 'string', 'max:200']
 
         ];
+    }
+
+            //
+
+    /**
+     * リダイレクト先をcontrollerで指定のためfailedValidationをoverride
+     * @param Validator $validator
+     */
+    protected function failedValidation(Validator $validator)
+    {
+    }
+
+    /**
+     * @return  Validator  $validator
+     */
+    public function getValidator()
+    {
+        return $this->getValidatorInstance();
     }
 }

@@ -42,7 +42,7 @@ Route::group(['prefix' => 'comprehensive', 'as' => 'comprehensive.'], function (
     Route::post('/login', [App\Http\Controllers\LoginController::class, 'login']);
 
     //一覧画面
-    Route::get('/work', [App\Http\Controllers\WorkController::class, 'show']);
+    Route::get('/work', [App\Http\Controllers\WorkController::class, 'index'])->name('work.index');;
     //勤務登録
-    Route::post('/work', [App\Http\Controllers\WorkController::class, 'store']);
+    Route::post('/work', [App\Http\Controllers\WorkController::class, 'store'])->name('work.store');
 });

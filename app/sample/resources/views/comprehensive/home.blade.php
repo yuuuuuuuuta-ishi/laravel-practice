@@ -26,9 +26,21 @@
                 <div class="textBox">
                     <label>出社時刻</label>
                     <input type="datetime-local" name="startTime" placeholder="出社時刻" step="900">
-                    @error('startTime')
-                        <p class="error">{{ $message }}</p>
-                    @enderror
+                    @if (@$responseData['errorMessages'])
+                        @php
+                            dump($responseData['errorMessages']);
+                            var_dump($responseData['errorMessages']);
+
+                        @endphp
+                        @foreach ($responseData['errorMessages'] as $startTime => $v)
+                        @php
+                            dump($v);
+                            var_dump($v);
+                        @endphp
+                        @endphp
+                            <p class="error">{{ $v }}</p>
+                        @endforeach
+                    @endif
                     <label>退社時刻</label>
                     <input type="datetime-local" name="endTime" placeholder="退社時刻" step="900">
                     @error('endTime')
