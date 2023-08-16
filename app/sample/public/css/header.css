@@ -1,27 +1,25 @@
-
-  .title_001 {
-    border-bottom:1px solid #999999;
-    color: #333;
+.title_001 {
     font-size: 32px;
-    margin: 0 0 20px;
-    padding: 0 0 8px;
-  }
-  .title_002 {
+    font-weight: bold;
+    margin: 5px;
+}
+.title_002 {
     /*border-bottom:1px solid #999999;*/
     color: #333;
     font-size: 24px;
     margin: 0 0 20px;
     padding: 0 0 8px;
-  }
-  .title_003 {
-    border-bottom:1px solid #999999;
+    box-sizing: border-box;
+}
+.title_003 {
+    border-bottom: 1px solid #999999;
     color: #333;
     font-size: 20px;
     margin: 0 0 20px;
     padding: 0 0 8px;
-  }
-  .title_004 {
+}
+.title_004 {
     color: #333;
     font-size: 20px;
     margin: 0 0 20px;
-  }
+}

@@ -1,0 +1,146 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+.container {
+    flex-grow: 1;
+    box-sizing: border-box;
+    margin-left: 10px;
+}
+
+.content {
+    margin: 20px;
+    padding: 1em;
+    color: #5d627b;
+    background: white;
+    border-top: solid 5px #5d627b;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+}
+
+/*
+** The Header Media Queries **
+** Tweak as per your needs **
+*/
+
+.site-header {
+    position: relative;
+    border-bottom: 3px solid #000;
+    background: #f4f4f4;
+    margin: 0 0 20px;
+    padding: 0 0 8px;
+}
+
+.site-header__wrapper {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+@media (min-width: 600px) {
+    .site-header__wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+}
+@media (min-width: 600px) {
+    .nav__wrapper {
+        display: flex;
+    }
+}
+
+@media (max-width: 599px) {
+    .nav__wrapper {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+        z-index: -1;
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(-100%);
+        transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    }
+    .nav__wrapper.active {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.nav__item {
+    list-style-type: none;
+}
+
+.nav__item a {
+    display: block;
+    padding: 1.5rem 1rem;
+    list-style-type: none;
+}
+
+.nav__toggle {
+    display: none;
+}
+@media (max-width: 599px) {
+    .nav__toggle {
+        display: block;
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+    }
+}
+
+
+.link_1 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: right;
+    align-items: center;
+    margin: 5px;
+}
+
+.pagination {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+}
+
+.page-item{
+    display: block;
+    padding: 1.5rem 1rem;
+    list-style-type: none;
+}
+
+.parent{
+    display: flex;
+}
+
+.child{
+    width:calc(100% / 2);
+    flex-direction: column;
+    margin: 10px;
+}
+
+.botton {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: right;
+    align-items: center;
+    list-style-type: none;
+    margin: 10px;
+}
+
+.botton_item {
+    display: block;
+    list-style-type: none;
+    margin: 10px;
+    padding: 5px;
+}

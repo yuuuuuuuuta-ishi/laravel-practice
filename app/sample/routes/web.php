@@ -41,8 +41,26 @@ Route::group(['prefix' => 'comprehensive', 'as' => 'comprehensive.'], function (
     //home 勤怠入力画面
     Route::post('/login', [App\Http\Controllers\LoginController::class, 'login']);
 
-    //一覧画面
-    Route::get('/work', [App\Http\Controllers\WorkController::class, 'index'])->name('work.index');;
+    //検索
+    Route::post('/work/get', [App\Http\Controllers\WorkController::class, 'index'])->name('work.index');;
     //勤務登録
     Route::post('/work', [App\Http\Controllers\WorkController::class, 'store'])->name('work.store');
+});
+
+Route::group(['prefix' => 'user', 'as' => 'user'], function () {
+    //一覧画面
+    Route::get('/', [App\Http\Controllers\UserController::class, 'index']);
+    //詳細画面
+    Route::get('/get', [App\Http\Controllers\UserController::class, 'get']);
+
+    //新規登録画面
+    Route::get('/create', [App\Http\Controllers\UserController::class, 'show']);
+    //新規登録
+    Route::post('/create', [App\Http\Controllers\UserController::class, 'create']);
+
+    //新規登録
+    Route::post('/update', [App\Http\Controllers\UserController::class, 'update']);
+
+    //新規登録
+    Route::post('/delete', [App\Http\Controllers\UserController::class, 'destroy']);
 });

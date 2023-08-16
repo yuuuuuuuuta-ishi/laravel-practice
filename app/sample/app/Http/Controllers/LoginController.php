@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
 use App\Models\User;
+use App\Models\DayWorkInformation;
+use Carbon\Carbon;
 
 // ログ出力用
 use Illuminate\Support\Facades\Log;
@@ -24,7 +26,6 @@ class LoginController extends Controller
         //usersテーブルを検索
         $user = User::getUserByUserIdAndPassword($employeeCode, $password);
 
-
         $message = '';
         //検索結果の判定
         if (is_null($user) || empty($user)) {
@@ -36,14 +37,12 @@ class LoginController extends Controller
             $message = 'ようこそ！' . $user->name . 'さん！';
         }
 
+        $workInfo = DayWorkInformation::getMonthWorkInfo($employeeCode);
 
-        log::info($message);
+        log::info($workInfo);
         $responseData = [
-            'message' => $message
-            , 'employeeCode' => $employeeCode
+            'message' => $message, 'employeeCode' => $employeeCode, 'workInfo' => $workInfo, 'workMonth' => date('Y-m')
         ];
-
-
 
         return view('comprehensive.home', ['responseData' => $responseData]);
     }

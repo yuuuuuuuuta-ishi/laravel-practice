@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Requests\WorkRequest;
-use App\Http\Requests\CommonRequest;
+use App\Http\Requests\GetWorkInfoRequest;
 use App\Models\User;
-use App\Models\dayWorkInformation;
+use App\Models\DayWorkInformation;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 
@@ -15,20 +15,36 @@ class WorkController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(WorkRequest $request)
+    public function index(GetWorkInfoRequest $request)
     {
+        //返却値初期設定
+        $responseData = [];
+        $responseData['employeeCode'] = $request->input('employeeCode');
+
+        //リダイレクト先指定のためcontrollerでバリデーション処理実装
         $validator = $request->getValidator();
         if ($validator->fails()) {
-            // エラーが表示される
-            echo $validator->getMessageBag()->first();
+            $validations =  json_decode((string)$validator->getMessageBag(), true);
+            return response()->view('comprehensive.home',['responseData' => $responseData, 'validations' => $validations], 422);
         }
+
+        $month = data_get($request, 'month', null);
+        $employeeCode = $request->input('employeeCode');
+
+        //users存在判定
+        if (self::isExistUser($employeeCode)) {
+            $errorMessage = '対象のユーザーが存在しません';
+            return response()->view('comprehensive.home', ['responseData' => $responseData, 'errorMessage' => $errorMessage], 400);
+        }
+
+        //入力値で勤怠情報を取得
+        log::info($month);
+        $workInfo = DayWorkInformation::getMonthWorkInfo($employeeCode, $month);
+
+        log::info($workInfo);
         $responseData = [
-            'message' => $validator->getMessageBag()->first()
-            , 'employeeCode' => $request->input('employeeCode')
-
+            'employeeCode' => $employeeCode, 'workInfo' => $workInfo, 'workMonth' => $month
         ];
-
-
 
         return view('comprehensive.home', ['responseData' => $responseData]);
     }
@@ -45,22 +61,15 @@ class WorkController extends Controller
      */
     public function store(WorkRequest $request)
     {
+        //返却値初期設定
+        $responseData = [];
+        $responseData['employeeCode'] = $request->input('employeeCode');
+
         //リダイレクト先指定のためcontrollerでバリデーション処理実装
         $validator = $request->getValidator();
         if ($validator->fails()) {
-            $errorMessages = [];
-            $errorMessages =  json_decode((string)$validator->getMessageBag(), true);
-            log::info($errorMessages);
-            log::info($errorMessages['startTime']);
-            log::info($errorMessages['startTime'][0]);
-            log::info($errorMessages);
-
-            $responseData = [
-                'errorMessages' => $errorMessages
-                , 'employeeCode' => $request->input('employeeCode')
-            ];
-
-            return view('comprehensive.home', ['responseData' => $responseData]);
+            $validations =  json_decode((string)$validator->getMessageBag(), true);
+            return response()->view('comprehensive.home',['responseData' => $responseData, 'validations' => $validations], 422);
         }
 
         //リクエスト情報取得
@@ -69,30 +78,23 @@ class WorkController extends Controller
         $details = $request->input('details');
         $employeeCode = $request->input('employeeCode');
 
-
-        log::info($startTime);
-        log::info($endTime);
         //勤務日取得
         $workDay = date('Y/m/d', strtotime($startTime));
 
         //勤務時間の計算
         $workTime = strtotime($endTime) - strtotime($startTime) / 60 / 60;
 
-        //usersテーブルを検索
-        $user = User::selectOneByCode($employeeCode);
-        if (is_null($user) || empty($user)) {
+        //users存在判定
+        if (self::isExistUser($employeeCode)) {
             $errorMessage = '対象のユーザーが存在しません';
-            return redirect() //1つ前の入力画面に戻す
-                ->withInput() //入力値を保持する
-                ->with([
-                    'errorMessage' => $errorMessage,
-                ]);
+            return response()->view('comprehensive.home', ['responseData' => $responseData, 'errorMessage' => $errorMessage], 400);
         }
 
         //日次勤怠の登録
         DB::beginTransaction();
+        $user = User::selectOneByCode($employeeCode);
         try {
-            $dayWorkInformation = new dayWorkInformation();
+            $dayWorkInformation = new DayWorkInformation();
             $dayWorkInformation->code = $employeeCode;
             $dayWorkInformation->day = $workDay;
             $dayWorkInformation->start_time = $startTime;
@@ -106,19 +108,18 @@ class WorkController extends Controller
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
-            $errorMessage = '勤怠情報の登録に失敗しました';
-            return redirect() //1つ前の入力画面に戻す
-                ->withInput() //入力値を保持する
-                ->with([
-                    'errorMessage' => $errorMessage,
-                ]);
+            $responseData['errorMessage']  = '勤怠情報の登録に失敗しました';
+            return response()->view(
+                'comprehensive.home',
+                [
+                    'responseData' => $responseData
+                ],
+                500
+            );
         }
 
-        $responseData = [
-            'message' => '勤怠情報の登録に成功しました。', 'employeeCode' => $employeeCode
-        ];
-
-        log::info($responseData);
+        $responseData['message'] =  '勤怠情報の登録に成功しました。';
+        $responseData['workInfo'] = DayWorkInformation::getMonthWorkInfo($employeeCode);
         return view('comprehensive.home', ['responseData' => $responseData]);
     }
 
@@ -152,5 +153,19 @@ class WorkController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+
+    /**
+     * isExistUser
+     *
+     * @param  mixed $employeeCode
+     * @return bool
+     */
+    private  function isExistUser(string $employeeCode)
+    {
+        //users存在判定
+        $user = User::selectOneByCode($employeeCode);
+        return (is_null($user) || empty($user));
     }
 }

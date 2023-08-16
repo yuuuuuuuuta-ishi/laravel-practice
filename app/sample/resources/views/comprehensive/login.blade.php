@@ -1,13 +1,13 @@
-@extends('layouts.app')
+@extends('layouts.login')
 
-@section('title', 'MVC基礎')
+@section('title', '総合課題')
 
 @section('content')
 
     @error('errorMessage')
         <p class="error">{{ $message }}</p>
     @enderror
-    <div>
+    <div class="content">
         <h2 class="title_002">社員コードとパスワードを入力してください。</h2>
         <form method="POST" action="/comprehensive/login">
             {{ csrf_field() }}

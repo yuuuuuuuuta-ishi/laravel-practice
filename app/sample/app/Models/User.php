@@ -38,4 +38,9 @@ class User extends Model
 
         return $query->first();
     }
+
+    public static function getAll(){
+
+        return  self::paginate(10);
+    }
 }

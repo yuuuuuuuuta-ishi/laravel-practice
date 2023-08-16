@@ -12,9 +12,9 @@
 
 .success {
     padding: 0.5em 1em;
-    color: #003699;
-    background: #659bec;
-    border-left: solid 10px #003699;
+    color: #000000;
+    background: #aaf3a7;
+    border-left: solid 10px #008d1f;
 }
 .success p {
     margin: 0;
