@@ -14,7 +14,7 @@ class LoginRequest extends CommonRequest
     public function rules(): array
     {
         return [
-            'employeeCode' => ['required ','string','max:4']
+            'employeeCode' => ['required ','string','max:10']
             ,'password' => ['required ','string','max:50']
         ];
     }

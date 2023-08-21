@@ -37,12 +37,18 @@ class LoginController extends Controller
             $message = 'ようこそ！' . $user->name . 'さん！';
         }
 
-        $workInfo = DayWorkInformation::getMonthWorkInfo($employeeCode);
+        $workInfo = DayWorkInformation::getMonthWorkInfo($employeeCode)
+                ->withPath('/comprehensive/work/get');
 
-        log::info($workInfo);
+
         $responseData = [
             'message' => $message, 'employeeCode' => $employeeCode, 'workInfo' => $workInfo, 'workMonth' => date('Y-m')
         ];
+        log::info($responseData);
+
+        $request->session()->put(['code' => $employeeCode]);
+
+        log::info($request->session()->all());
 
         return view('comprehensive.home', ['responseData' => $responseData]);
     }

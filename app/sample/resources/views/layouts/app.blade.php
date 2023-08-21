@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ asset('/css/message.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/table.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/layout.css') }}">
+    <script type="module" src="{{ asset('/js/app.js') }}"></script>
 
     <title>WEBアプリケーション開発課題</title>
 </head>
@@ -28,7 +29,7 @@
                     menu
                 </button>
                 <ul class="nav__wrapper">
-                    <li class="nav__item"><a href="#">勤怠</a></li>
+                    <li class="nav__item"><a href="{{ route('comprehensive.work.index', ['employeeCode'=>session('code')]) }}">勤怠</a></li>
                     <li class="nav__item"><a href="/user">社員</a></li>
                 </ul>
             </nav>
@@ -38,7 +39,6 @@
         <div class="container">
             @yield('content')
         </div>
-
 </body>
 <footer>
     <!-- 省略 -->

@@ -16,7 +16,7 @@ class DayWorkInformation extends Model
      *
      * @param  mixed $code
      * @param  mixed $dateTime
-     * @return array $workInfo
+     * @return DayWorkInformation $workInfo
      */
     public static function getMonthWorkInfo(string $code, string $dateTime = null)
     {
@@ -25,24 +25,19 @@ class DayWorkInformation extends Model
         } else {
             $date = date('Y/m', strtotime($dateTime));
         }
-        $informations = self::query()
+        $workInfo = self::query()
+            ->selectRaw(
+                'to_char(day, \'YYYY/MM\') as day
+                , to_char(start_time, \'HH24:MI\') as start_time
+                , to_char(end_time, \'HH24:MI\') as end_time
+                , details'
+            )
             ->where('code', $code)
             ->whereRaw('to_char(day, \'YYYY/MM\')= \'' . $date . '\'')
-            ->get();
+            ->paginate(10)
+            ->withQueryString();
+        return $workInfo;
 
         $workInfo = [];
-
-        if(empty($informations) === false){
-            foreach ($informations as $information) {
-                $workInfo[] = [
-                    'day' => date('Y/m/d', strtotime($information->day))
-                    , 'startTime' => date('H:i', strtotime($information->start_time))
-                    , 'endTime' => date('H:i', strtotime($information->end_time))
-                    , 'details' => $information->details
-                ];
-            }
-        }
-
-        return $workInfo;
     }
 }

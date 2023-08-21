@@ -39,8 +39,25 @@ class User extends Model
         return $query->first();
     }
 
+    /**
+     * getAll
+     *
+     * @return user
+     */
     public static function getAll(){
 
         return  self::paginate(10);
+    }
+
+
+    public static function getLatestCode(){
+
+        $query = self::query()
+            ->select('code')
+            ->orderBy('code', 'desc')
+            ->limit(1)
+            ;
+
+        return $query->get();
     }
 }
