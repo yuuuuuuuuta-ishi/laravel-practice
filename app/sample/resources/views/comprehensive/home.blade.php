@@ -23,49 +23,54 @@
         <h2 class="title_002">
             勤怠登録
         </h2>
-            <form method="POST" action="/comprehensive/work">
-                {{ csrf_field() }}
-                <div class="textBox">
-                    <label>出社時刻</label>
-                    <input type="datetime-local" name="startTime" placeholder="出社時刻" step="900">
-                    @if (@$validations['startTime'])
-                        @foreach ($validations['startTime'] as $validation)
-                            <p class="error">{{ $validation }}</p>
-                        @endforeach
-                    @endif
-                    <label>退社時刻</label>
-                    <input type="datetime-local" name="endTime" placeholder="退社時刻" step="900">
-                    @if (@$validations['endTime'])
-                        @foreach ($validations['endTime'] as $validation)
-                            <p class="error">{{ $validation }}</p>
-                        @endforeach
-                    @endif
-                </div>
-                <div class="sentenseBox">
-                    <label>作業内容</label>
-                    <input type="text" name="details">
-                    @if (@$validations['details'])
-                        @foreach ($validations['details'] as $validation)
-                            <p class="error">{{ $validation }}</p>
-                        @endforeach
-                    @endif
-                </div>
-                <p>
-                    <input type="hidden" name="employeeCode" value={{ $responseData['employeeCode'] }}>
-                    <input type="submit" value="登録">
-                </p>
-            </form>
+        <form method="POST" action="/comprehensive/work">
+            {{ csrf_field() }}
+            <div class="textBox">
+                <label>出社時刻</label>
+                <input type="datetime-local" name="startTime" placeholder="出社時刻" step="900">
+                @if (@$validations['startTime'])
+                    @foreach ($validations['startTime'] as $validation)
+                        <p class="error">{{ $validation }}</p>
+                    @endforeach
+                @endif
+                <label>退社時刻</label>
+                <input type="datetime-local" name="endTime" placeholder="退社時刻" step="900">
+                @if (@$validations['endTime'])
+                    @foreach ($validations['endTime'] as $validation)
+                        <p class="error">{{ $validation }}</p>
+                    @endforeach
+                @endif
+            </div>
+            <div class="sentenseBox">
+                <label>作業内容</label>
+                <input type="text" name="details">
+                @if (@$validations['details'])
+                    @foreach ($validations['details'] as $validation)
+                        <p class="error">{{ $validation }}</p>
+                    @endforeach
+                @endif
+            </div>
+            <p>
+                <input type="hidden" name="employeeCode" value={{ $responseData['employeeCode'] }}>
+                <input type="submit" value="登録">
+            </p>
+        </form>
     </div>
     <div class="content">
         <h2 class="title_002">
             勤務情報
         </h2>
         <div>
-            <form method="POST" action="/comprehensive/work/get">
+            <form method="GET" action="/comprehensive/work/get">
                 {{ csrf_field() }}
                 <div class="textBox">
                     <label></label>
-                    <input type="month" name="month" value={{ $responseData['workMonth'] }}>
+                    @if (empty($responseData['workInfo']) === false)
+                    <input type="month" name="month">
+                    @else
+                        <input type="month" name="month">
+                    @endif
+
                     @if (@$validations['month'])
                         @foreach ($validations['month'] as $validation)
                             <p class="error">{{ $validation }}</p>
@@ -89,14 +94,18 @@
                     @foreach ($responseData['workInfo'] as $info)
                         <tr>
                             <td>{{ $info['day'] }}</td>
-                            <td>{{ $info['startTime'] }}</td>
-                            <td>{{ $info['endTime'] }}</td>
+                            <td>{{ $info['start_time'] }}</td>
+                            <td>{{ $info['end_time'] }}</td>
                             <td>{{ $info['details'] }}</td>
                         </tr>
                     @endforeach
                 @endif
             </table>
-
+            @if (empty($responseData['workInfo']) === false)
+            {{ $responseData['workInfo']->links() }}
+            @else
+            <p class="error">該当する勤怠情報が存在しません</p>
+            @endif
         </div>
     </div>
 @endsection

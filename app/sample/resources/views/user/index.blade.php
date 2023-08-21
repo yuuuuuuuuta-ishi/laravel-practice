@@ -24,7 +24,7 @@
             社員一覧
         </h2>
         <div class="link_1">
-            <a href="/users/create">担当者の新規登録</a>
+            <a href="/user/create">担当者の新規登録</a>
         </div>
         <div>
             <table class="table_1">

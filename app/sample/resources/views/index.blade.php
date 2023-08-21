@@ -8,7 +8,7 @@
             <li class="listItem"><a href="/blade">Blade基礎</a></li>
             <li class="listItem"><a href="/vc">Controller基礎</a></li>
             <li class="listItem"><a href="/mvc">MVC基礎 リクエスト基礎</a></li>
-            <li class="listItem"><a href="/comprehensive">総合課題</a></li>
+            <li class="listItem"><a href="/comprehensive">総合課題①, ②</a></li>
         </ul>
     </div>
 @endsection

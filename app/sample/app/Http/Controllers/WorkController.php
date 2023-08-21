@@ -10,6 +10,7 @@ use App\Models\DayWorkInformation;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 
+
 class WorkController extends Controller
 {
     /**
@@ -29,7 +30,7 @@ class WorkController extends Controller
         }
 
         $month = data_get($request, 'month', null);
-        $employeeCode = $request->input('employeeCode');
+        $employeeCode = session('code');
 
         //users存在判定
         if (self::isExistUser($employeeCode)) {
@@ -39,7 +40,8 @@ class WorkController extends Controller
 
         //入力値で勤怠情報を取得
         log::info($month);
-        $workInfo = DayWorkInformation::getMonthWorkInfo($employeeCode, $month);
+        $workInfo = DayWorkInformation::getMonthWorkInfo($employeeCode, $month)
+        ->withPath('/comprehensive/work/get');
 
         log::info($workInfo);
         $responseData = [
@@ -82,7 +84,7 @@ class WorkController extends Controller
         $workDay = date('Y/m/d', strtotime($startTime));
 
         //勤務時間の計算
-        $workTime = strtotime($endTime) - strtotime($startTime) / 60 / 60;
+        $workTime = (strtotime($endTime) - strtotime($startTime)) / 60;
 
         //users存在判定
         if (self::isExistUser($employeeCode)) {
@@ -119,7 +121,9 @@ class WorkController extends Controller
         }
 
         $responseData['message'] =  '勤怠情報の登録に成功しました。';
-        $responseData['workInfo'] = DayWorkInformation::getMonthWorkInfo($employeeCode);
+        $responseData['workInfo'] = DayWorkInformation::getMonthWorkInfo($employeeCode)
+        ->withPath('/comprehensive/work/get');
+        log::info($responseData);
         return view('comprehensive.home', ['responseData' => $responseData]);
     }
 

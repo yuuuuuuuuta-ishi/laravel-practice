@@ -27,9 +27,11 @@
             @if (empty($responseData['user']) === false)
                 <div class="textBox_2">
                     <form method="POST" action="/user/update">
+                        {{ csrf_field() }}
                         <div class="child">
                             <label>社員コード</label>
                             <p class="disable_edit">{{ $responseData['user']['code'] }} </p>
+                            <input type="hidden" name="code" value={{ $responseData['user']['code'] }}>
                         </div>
                         <div class="parent">
                             <div class="child">
@@ -67,12 +69,10 @@
                             <input type="submit" value="更新" class="botton_item">
                     </form>
                     <form method="POST" action="/user/delete">
-                        {{ method_field('DELETE') }}
+                        {{ csrf_field() }}
                         <input type="hidden" name="code" value={{ $responseData['user']['code'] }}>
-                        <input type="submit" name="delete" value="削除" onClick="delete_alert(event);return false;"
-                            class="botton_item">
+                        <input type="submit" value="削除" onclick='return confirm("本当に削除しますか？")' class="botton_item">
                     </form>
-
                 </div>
             @endif
         </div>
