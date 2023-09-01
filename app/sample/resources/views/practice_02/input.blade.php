@@ -3,7 +3,7 @@
 @section('title', 'アプリケーション基礎')
 
 @section('content')
-    <div>
+    <div class="content">
         <p>文字を入力してください。</p>
         <form method="POST" action="/practice_02">
             {{--laravelではPOST送信にトークンの設定が必要--}}
