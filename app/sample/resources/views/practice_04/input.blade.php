@@ -3,8 +3,8 @@
 @section('title', 'MVC基礎')
 
 @section('content')
-    <div>
-        <h2 class="title_002">社員コードとパスワードを入力してください。</h2>
+<div class="content">
+    <h2 class="title_002">社員コードとパスワードを入力してください。</h2>
         <form method="POST" action="/practice_04">
             {{ csrf_field() }}
             <div class="textBox">

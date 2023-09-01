@@ -3,7 +3,7 @@
 @section('title', 'blade基礎')
 
 @section('content')
-<div>
+<div class="content">
     <p>入力された文字は</p>
     <p>
         「{{$text}}」

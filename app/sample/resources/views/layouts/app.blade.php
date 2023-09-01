@@ -39,7 +39,8 @@
                 <ul class="nav__wrapper">
                 </ul>
                 <li class="nav__item"><a href="/practice_08">追加要件</a></li>
-                <li class="nav__item"><a href="/practice_09">オブジェクト指向</a></li>
+                <li class="nav__item">オブジェクト指向</li>
+                <!--<li class="nav__item"><a href="/practice_09">オブジェクト指向</a></li>-->
             </ul>
         </div>
         <div class="main">

@@ -4,7 +4,7 @@
 @section('title', 'Controller基礎')
 
 @section('content')
-    <div>
+    <div class="content">
         <h2 class="title_002">生年月日を入力してください。</h2>
         <form method="POST" action="/practice_03">
             {{ csrf_field() }}
