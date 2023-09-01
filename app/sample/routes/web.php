@@ -112,17 +112,17 @@ Route::group(['prefix' => 'practice_08', 'as' => 'practice_08.'], function () {
     //一覧画面
     Route::get('/user', [App\Http\Controllers\Practice_08\UserController::class, 'index']);
     //詳細画面
-    Route::get('user/get', [App\Http\Controllers\Practice_08\UserController::class, 'get']);
+    Route::get('/user/get', [App\Http\Controllers\Practice_08\UserController::class, 'get']);
 
     //登録画面
-    Route::get('user/create', [App\Http\Controllers\Practice_08\UserController::class, 'show']);
+    Route::get('/user/create', [App\Http\Controllers\Practice_08\UserController::class, 'show']);
     //新規登録
-    Route::post('user/create', [App\Http\Controllers\Practice_08\UserController::class, 'create']);
+    Route::post('/user/create', [App\Http\Controllers\Practice_08\UserController::class, 'create']);
 
     //更新
-    Route::post('user/update', [App\Http\Controllers\Practice_08\UserController::class, 'update']);
+    Route::post('/user/update', [App\Http\Controllers\Practice_08\UserController::class, 'update']);
 
     //削除
-    Route::post('user/delete', [App\Http\Controllers\Practice_08\UserController::class, 'destroy']);
+    Route::post('/user/delete', [App\Http\Controllers\Practice_08\UserController::class, 'destroy']);
 });
 

@@ -38,7 +38,7 @@
                     <div class="parent">
                         <div class="child">
                             <label>支店</label>
-                            <input type="list" list="branch" name="branch">
+                            <input type="list" autocomplete="off" list="branch" name="branch">
                             <datalist id="branch">
                                 <option value="本社"></option>
                                 <option value="東北支店"></option>
@@ -55,7 +55,7 @@
                         </div>
                         <div class="child">
                             <label>部署</label>
-                            <input type="list" list="department" name="department">
+                            <input type="list" autocomplete="off" list="department" name="department">
                             <datalist id="department">
                                 <option value="総務部"></option>
                                 <option value="経理部"></option>
@@ -71,7 +71,7 @@
                     <div class="parent">
                         <div class="child">
                             <div>役職</div>
-                            <input type="list" list="post" name="post">
+                            <input type="list" autocomplete="off" list="post" name="post">
                             <datalist id="post">
                                 <option value="係長"></option>
                                 <option value="主任"></option>

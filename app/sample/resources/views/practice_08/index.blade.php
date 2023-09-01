@@ -46,7 +46,7 @@
                             <td>{{ $user['post'] }}</td>
                             @if(session('isAdmin') === TRUE)
                             <td>
-                                <form method="GET" action="/user/get">
+                                <form method="GET" action="/practice_08/user/get">
                                 <input type="hidden" name="code" value={{ $user['code']  }}>
                                 <input type="submit" value="詳細・編集">
                                 </form>

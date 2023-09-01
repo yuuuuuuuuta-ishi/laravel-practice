@@ -37,32 +37,74 @@
                             <div class="child">
                                 <label>社員名</label>
                                 <input type="text" name="name" value="{{ $responseData['user']['name'] }}">
+                                @error('name')
+                                    <p class="error">{{ $message }}</p>
+                                @enderror
                             </div>
                             <div class="child">
                                 <label>年齢</label>
                                 <input type="number" name="age" max="100"
                                     min="18"value={{ $responseData['user']['age'] }}>
+                                @error('age')
+                                    <p class="error">{{ $message }}</p>
+                                @enderror
                             </div>
                         </div>
                         <div class="parent">
                             <div class="child">
                                 <label>支店</label>
-                                <input type="text" name="branch" value={{ $responseData['user']['branch'] }}>
+                                <input type="text" name="branch" list="branch"
+                                    value={{ $responseData['user']['branch'] }}>
+                                <datalist id="branch">
+                                    <option value="本社"></option>
+                                    <option value="東北支店"></option>
+                                    <option value="東海支店"></option>
+                                    <option value="近畿支店"></option>
+                                    <option value="中国支店"></option>
+                                    <option value="四国支店"></option>
+                                    <option value="九州支店"></option>
+                                </datalist>
+                                @error('branch')
+                                    <p class="error">{{ $message }}</p>
+                                @enderror
                             </div>
                             <div class="child">
                                 <label>部署</label>
-                                <input type="text" name="department" value={{ $responseData['user']['department'] }}>
+                                <input type="text" name="department" list="department"
+                                    value={{ $responseData['user']['department'] }}>
+                                <datalist id="department">
+                                    <option value="総務部"></option>
+                                    <option value="経理部"></option>
+                                    <option value="人事部"></option>
+                                    <option value="営業部"></option>
+                                    <option value="開発部"></option>
+                                </datalist>
+                                @error('department')
+                                    <p class="error">{{ $message }}</p>
+                                @enderror
                             </div>
                         </div>
                         <div class="parent">
                             <div class="child">
                                 <div>役職</div>
-                                <input type="text" name="post" value={{ $responseData['user']['post'] }}>
+                                <input type="text" name="post"
+                                    list="post"value={{ $responseData['user']['post'] }}>
+                                <datalist id="post">
+                                    <option value="係長"></option>
+                                    <option value="主任"></option>
+                                    <option value="一般社員"></option>
+                                </datalist>
+                                @error('post')
+                                    <p class="error">{{ $message }}</p>
+                                @enderror
                             </div>
                             <div class="child">
                                 <label>入社日</label>
                                 <input type="text" name="entryDate" value={{ $responseData['user']['entry_date'] }}
                                     pattern="\d\d\d\d-\d\d-\d\d">
+                                @error('entryDate')
+                                    <p class="error">{{ $message }}</p>
+                                @enderror
                             </div>
                         </div>
                         <div class="botton">

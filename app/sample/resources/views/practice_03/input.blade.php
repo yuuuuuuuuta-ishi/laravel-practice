@@ -1,5 +1,5 @@
 
-@extends('layouts.top')
+@extends('layouts.app')
 
 @section('title', 'Controller基礎')
 

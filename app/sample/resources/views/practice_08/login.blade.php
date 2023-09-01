@@ -1,4 +1,4 @@
-@extends('layouts.top')
+@extends('layouts.app')
 
 @section('title', '追加要件')
 
