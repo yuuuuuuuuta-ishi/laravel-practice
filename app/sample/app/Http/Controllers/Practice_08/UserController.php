@@ -53,9 +53,11 @@ class UserController extends Controller
 
         //コードの採番
         $codeLatest = User::getLatestCode();
-        $codeInt = (int)$codeLatest->code;
-        log::info($codeInt);
-        $code = str_pad($codeInt++, 5, 0, STR_PAD_LEFT);
+        log::info(['codeLatest', $codeLatest]);
+        $codeInt = (int)$codeLatest->code + 1;
+        log::info(['codeInt', $codeInt]);
+        $code = str_pad($codeInt, 5, 0, STR_PAD_LEFT);
+        log::info($code);
 
         //データの更新
         DB::beginTransaction();
@@ -89,7 +91,7 @@ class UserController extends Controller
         $responseData = [];
         $users = User::getAll()->withPath('/Practice_08/user');
         $responseData = [
-            'users' => $users, 'message' => '社員コード : ' . $code . ' のデータを更新しました。'
+            'users' => $users, 'message' => '社員コード : ' . $code . ' のデータを登録しました。'
         ];
 
         log::info($responseData);
