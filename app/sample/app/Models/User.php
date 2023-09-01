@@ -58,6 +58,6 @@ class User extends Model
             ->limit(1)
             ;
 
-        return $query->get();
+        return $query->first();
     }
 }
