@@ -14,8 +14,6 @@
 
     <title>WEBアプリケーション開発課題</title>
 </head>
-
-<body>
         <!-- Header Start -->
         <header class="site-header">
             <div class="wrapper site-header__wrapper">
@@ -24,6 +22,8 @@
                 </h1>
             </div>
         </header>
+<body>
+
     <div class="container">
         @yield('content')
     </div>

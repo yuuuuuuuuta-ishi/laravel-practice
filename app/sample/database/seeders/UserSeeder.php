@@ -12,6 +12,9 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\User::factory(30)->create();
+        for($i = 0; $i < 30; $i++){
+            \App\Models\User::factory(1)->create();
+        }
+
     }
 }

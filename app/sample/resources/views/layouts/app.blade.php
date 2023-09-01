@@ -24,24 +24,33 @@
             <h1 class="title_001">
                 @yield('title')
             </h1>
-            <nav class="nav">
-                <button class="nav__toggle" aria-expanded="false" type="button">
-                    menu
-                </button>
-                <ul class="nav__wrapper">
-                    <li class="nav__item"><a href="{{ route('comprehensive.work.index', ['employeeCode'=>session('code')]) }}">勤怠</a></li>
-                    <li class="nav__item"><a href="/user">社員</a></li>
-                </ul>
-            </nav>
         </div>
     </header>
-
-        <div class="container">
+    <div class="container">
+        <div class="side">
+            <ul>
+                <li class="nav__item"><a href="/">home</a></li>
+                <li class="nav__item"><a href="/practice_02">Blade基礎</a></li>
+                <li class="nav__item"><a href="/practice_03">Controller基礎</a></li>
+                <li class="nav__item"><a href="/practice_04">MVC基礎</a></li>
+                <li class="nav__item"><a href="/practice_05">リクエスト基礎</a></li>
+                <li class="nav__item"><a href="/practice_06">総合課題①</a></li>
+                <li class="nav__item"><a href="/practice_07">総合課題②</a></li>
+                <ul class="nav__wrapper">
+                </ul>
+                <li class="nav__item"><a href="/practice_08">追加要件</a></li>
+                <li class="nav__item"><a href="/practice_09">オブジェクト指向</a></li>
+            </ul>
+        </div>
+        <div class="main">
             @yield('content')
         </div>
+    </div>
 </body>
 <footer>
     <!-- 省略 -->
 </footer>
 
 </html>
+
+<!doctype html>
