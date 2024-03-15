@@ -32,3 +32,7 @@
 ### 出力時画面表示
 
 <img src="output.png" width="50%">
+
+example/problem-1
+example/problem-2
+
