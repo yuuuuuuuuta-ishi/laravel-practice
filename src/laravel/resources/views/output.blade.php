@@ -1,9 +1,10 @@
-
+<x-header>
+</x-header>
+@extends('layouts.body')
+@section('content')
 <div class="content">
-    <p>入力された文字は</p>
-    <p>
-        「{{$text}}」
-    </p>
-    <p>です。</p>
+        <h2 class="title_002">
+            「{{$message}}」
+        </h2>
 </div>
-
+@endsection

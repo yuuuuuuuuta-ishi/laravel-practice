@@ -1,9 +1,6 @@
 <!-- resources/views/components/header.blade.php -->
 
 <header class="site-header">
-
-</header>
-<head>
     <title>
         WEBアプリケーション開発課題
     </title>
