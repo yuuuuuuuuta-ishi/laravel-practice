@@ -1,5 +1,4 @@
 <!doctype html>
-
 <body>
     <div class="container">
             {{-- <x-side> </x-side> --}}

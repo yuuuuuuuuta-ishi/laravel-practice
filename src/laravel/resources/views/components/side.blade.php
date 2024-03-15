@@ -1,7 +1,7 @@
 <div class='side'>
     <ul>
         <ul>
-            <li><a href="/">home</a></ｌclass=>
+            <li><a href="/">home</a></li>
             <li><a href="/practice_02">Blade基礎</a></li>
             <li><a href="/practice_03">Controller基礎</a></li>
             <li><a href="/practice_04">MVC基礎</a></li>

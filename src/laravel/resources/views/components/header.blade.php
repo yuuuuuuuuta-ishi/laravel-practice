@@ -6,10 +6,10 @@
     </title>
     <div class="wrapper site-header__wrapper">
         <h1 class="title_001">
-            WEBアプリケーション開発課題
+            {{$title}}
         </h1>
     </div>
-</head>
+</header>
 
 @push('css')
     <style>
