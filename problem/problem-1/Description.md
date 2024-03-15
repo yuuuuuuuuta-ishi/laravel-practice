@@ -4,7 +4,7 @@
 - **dockerでPHPのコンテナの立ち上がる環境を構築し、そのコンテナで動くアプリケーションを作成し実行すること**
 - **dokcerでPHP+nginx+postgesの3つのコンテナを立ち上げ、PHPのフレームワークでlaravelを使用する環境を構築し、PHPコンテナ上で実行すること**
 
-## 要件 
+## 要件
 
 ### 入出力アプリケーション
 
@@ -23,12 +23,12 @@
 
 ### 入力画面表示
 
-![入力画面表示](top.png)
+<img src="top.png" width="50%">
 
 ### 入力時画面表示
 
-![入力時画面表示](input.png)
+<img src="input.png" width="50%">
 
 ### 出力時画面表示
 
-![出力時画面表示](output.png)
+<img src="output.png" width="50%">

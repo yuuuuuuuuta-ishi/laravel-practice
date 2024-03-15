@@ -1,4 +1,4 @@
-# application task
+# Application Problem
 
 ## 本研修の目的
 
@@ -92,9 +92,16 @@ root/
 - db
   - docker base image： [postgres:15.5-bullseye](https://hub.docker.com/layers/library/postgres/15.5-bullseye/images/sha256-b243ba597985f628f09df2726021aa13234afeabf545d7964b2f2ef258c0956a?context=explore)
 
-#### 2. xdebugの設定
+### configurationDiagram
+---
+<img src="src\laravel\resources\configurationDiagram.png" width="80%">
+
+---
+
+#### xdebugの設定
 
 xdebugを使う場合、必要に応じて設定
+研修では使用しません。興味を持ったら調べてみてください
 
 参考：
 
