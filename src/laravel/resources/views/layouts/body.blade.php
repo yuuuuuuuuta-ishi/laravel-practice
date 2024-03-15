@@ -2,10 +2,10 @@
 
 <body>
     <div class="container">
-        <div class="side">
+        {{-- <div class="side">
             <x-side>
             </x-side>
-        </div>
+        </div> --}}
 
         <div class="main">
             @yield('content')

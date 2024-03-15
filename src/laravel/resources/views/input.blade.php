@@ -1,5 +1,8 @@
-<x-header>
-</x-header>
+@component('components.header')
+    @slot('title')
+    教育課題2(blade基礎)
+    @endslot
+@endcomponent
 @extends('layouts.body')
 @section('content')
     <div class="content">
