@@ -15,7 +15,7 @@
     <style>
         .site-header {
             position: relative;
-            border-bottom: solid 5px #5d627b;
+            /* border-bottom: solid 5px #5d627b; */
             background: #f4f4f4;
             padding: 0 0 8px;
         }
