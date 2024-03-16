@@ -5,18 +5,19 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Http\Requests\LoginRequest;
 
 // ログ出力用
 use Illuminate\Support\Facades\Log;
 
 class LoginController extends Controller
 {
-    public function input()
+    public function input(request $request)
     {
         return view('input');
     }
 
-    public function output(request $request)
+    public function output(LoginRequest $request)
     {
         //リクエスト情報取得
         $employeeCode = $request->input('employeeCode');

@@ -1,6 +1,6 @@
 @component('components.header')
     @slot('title')
-    教育課題4(MVC基礎)
+        教育課題4(MVC基礎)
     @endslot
 @endcomponent
 
@@ -14,14 +14,22 @@
                 <label>社員コード</label>
                 <input type="text" name="employeeCode" placeholder="employee code">
                 @error('code')
-                    <p class="error">{{ $message }}</p>
+                    @component('components.alert')
+                        @slot('message')
+                            {{ $errors->first('code') }}
+                        @endslot
+                    @endcomponent
                 @enderror
             </div>
             <div class="textBox">
                 <label>パスワード</label>
                 <input type="password" name="password" placeholder="password">
                 @error('password')
-                    <p class="error">{{ $message }}</p>
+                    @component('components.alert')
+                        @slot('message')
+                            {{ $errors->first('password') }}
+                        @endslot
+                    @endcomponent
                 @enderror
             </div>
             <p>
@@ -30,3 +38,5 @@
         </form>
     </div>
 @endsection
+
+@stack('css')
