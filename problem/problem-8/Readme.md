@@ -42,3 +42,7 @@
 |レスポンス| |character varying(50)| | | |
 |作成日時| |timestamp(6) without time zone| | | |
 |更新日時| |timestamp(6) without time zone| | | |
+
+- 以下のクラス図を基にAPI実行用のクラスを作成すること
+
+<img src="クラス図.drawio" width="50%">
