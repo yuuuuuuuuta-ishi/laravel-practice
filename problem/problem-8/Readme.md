@@ -45,4 +45,4 @@
 
 - 以下のクラス図を基にAPI実行用のクラスを作成すること
 
-<img src="クラス図.drawio" width="50%">
+<img src="classDiagram.drawio.svg" width="50%">
