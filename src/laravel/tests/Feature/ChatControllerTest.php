@@ -14,7 +14,7 @@ class ChatControllerTest extends TestCase
      */
     public function test_index_with_empty_input_text()
     {
-        $controller = new ChatController(new \App\Services\DeeplTranslator());
+        $controller = new ChatController(app()->make(\App\Services\DeeplTranslator::class), app()->make(\App\Services\A3rt::class));
         $request = new Request();
 
         $response = $controller->index($request);
@@ -43,7 +43,7 @@ class ChatControllerTest extends TestCase
     public function test_index_with_non_empty_input_text()
     {
         // Create a new instance of the ChatController class
-        $controller = new ChatController(new \App\Services\DeeplTranslator());
+        $controller = new ChatController(app()->make(\App\Services\DeeplTranslator::class), app()->make(\App\Services\A3rt::class));
 
         // Create a new instance of the Request class with non-empty input text
         $request = new Request([

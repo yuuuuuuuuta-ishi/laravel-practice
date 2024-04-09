@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('styles')
@@ -45,13 +44,20 @@
                 <form action="{{ route('chat.index') }}" method="GET" class="mb-4">
                     <div class="form-row">
                         <div class="form-group col-md-6">
+                            <label for="api_provider">Select API Provider</label>
+                            <select class="form-control" id="api_provider" name="api_provider" onchange="toggleLanguageFields()">
+                                <option value="deepl" {{ $apiProvider == 'deepl' ? 'selected' : '' }}>DeepL</option>
+                                <option value="a3rt" {{ $apiProvider == 'a3rt' ? 'selected' : '' }}>A3RT</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6" id="source_lang_group" style="{{ $apiProvider == 'deepl' ? 'display: block;' : 'display: none;' }}">
                             <label for="source_lang">Source Language</label>
                             <select class="form-control" id="source_lang" name="source_lang">
                                 <option value="en" {{ $sourceLang == 'ja' ? 'selected' : '' }}>English</option>
                                 <option value="ja" {{ $sourceLang == 'en' ? 'selected' : '' }}>Japanese</option>
                             </select>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-6" id="target_lang_group" style="{{ $apiProvider == 'deepl' ? 'display: block;' : 'display: none;' }}">
                             <label for="target_lang">Target Language</label>
                             <select class="form-control" id="target_lang" name="target_lang">
                                 <option value="ja" {{ $targetLang == 'en' ? 'selected' : '' }}>Japanese</option>
@@ -67,7 +73,7 @@
                 </form>
             </div>
 
-            <div class="chat-container">
+            <div class="chat-container" id="chatContainer">
                 @foreach ($chatHistory as $message)
                 <div class="chat-message user">
                     <div class="card">
@@ -98,4 +104,16 @@
         </div>
     </div>
 </div>
+
+<script>
+    function toggleLanguageFields() {
+        var apiProvider = document.getElementById('api_provider').value;
+        document.getElementById('source_lang_group').style.display = apiProvider == 'deepl' ? 'block' : 'none';
+        document.getElementById('target_lang_group').style.display = apiProvider == 'deepl' ? 'block' : 'none';
+
+        // Scroll to the bottom of the chat container
+        var chatContainer = document.getElementById('chat-container');
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+</script>
 @endsection
