@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
             $table->string('input_text');
-            $table->string('translated_text');
+            $table->string('text');
             $table->string('source_lang');
             $table->string('target_lang');
             $table->timestamps();

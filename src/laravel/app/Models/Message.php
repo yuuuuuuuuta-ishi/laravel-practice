@@ -11,7 +11,7 @@ class Message extends Model
 
     protected $fillable = [
         'input_text',
-        'translated_text',
+        'text',
         'source_lang',
         'target_lang'
     ];

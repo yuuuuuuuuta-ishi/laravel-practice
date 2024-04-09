@@ -79,15 +79,13 @@
                     <div class="card">
                         <div class="card-body">
                             <p class="card-text">{{ $message->input_text }}</p>
-                            {{-- <p class="card-text"><small>Source: {{ $message->source_lang }} / Target: {{ $message->target_lang }}</small></p> --}}
                         </div>
                     </div>
                 </div>
                 <div class="chat-message bot">
                     <div class="card">
                         <div class="card-body">
-                            <p class="card-text">{{ $message->translated_text }}</p>
-                            {{-- <p class="card-text"><small>Source: {{ $message->source_lang }} / Target: {{ $message->target_lang }}</small></p> --}}
+                            <p class="card-text">{{ $message->text }}</p>
                         </div>
                     </div>
                 </div>

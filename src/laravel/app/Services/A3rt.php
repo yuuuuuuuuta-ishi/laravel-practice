@@ -15,35 +15,45 @@ class A3RT extends Api
     }
 
     /**
-     * Translate text using A3RT TALK API.
+     * Sends a request to A3RT TALK API for text translation.
      *
-     * @param string $text The text to translate.
+     * @param string $text The text to be translated.
+     * @throws \Exception If an error occurs during the request or parsing the response.
      * @return string The translated text or an error message.
-     *
-     * This function sends a request to A3RT TALK API for text translation.
-     * If the API responds with a successful status and the translated text,
-     * it is returned. Otherwise, an error message is returned.
-     * In case of any exception, an error message is returned and the exception is logged.
      */
     public function talk(string $text): string
     {
+        // Log the input text
+        Log::debug('Input text', ['text' => $text]);
 
-        // Send a request to A3RT TALK API for text translation
         try {
+            // Prepare the request headers
             $headers = [
                 'Content-Type' => 'application/json'
             ];
+
+            // Prepare the request body
             $body = [
                 'apikey' => parent::$apiKey,
                 'query' => $text
             ];
+
+            // Construct the request URL
             $url = parent::$baseUrl.'/talk/v1/smalltalk';
+
+            // Send the request and get the response
             $response = parent::sendRequest($url, $headers, $body);
+
+            // Log the request and response
+            Log::debug('Request', ['headers' => $headers, 'body' => $body, 'url' => $url]);
+            Log::debug('Response', $response->json());
 
             // If the API responds with a successful status and the translated text
             if ($response->successful() && $response->json()['status'] == 0) {
                 // Log the translation response
                 Log::info('A3RT response' , $response->json());
+
+                // Return the translated text
                 return $response->json()['results'][0]['reply'];
             }
 
@@ -51,8 +61,9 @@ class A3RT extends Api
             Log::error('Error: Unable to A3RT text');
             return 'Error: Unable to A3RT text';
         } catch (\Exception $e) {
-            // If an exception occur, return an error message and log the exception
+            // If an exception occurs, return an error message and log the exception
             Log::error('Error: ' . $e->getMessage());
+            Log::debug('Exception', ['message' => $e->getMessage(), 'trace' => $e->getTrace()]);
             return 'Error: ' . $e->getMessage();
         }
     }
