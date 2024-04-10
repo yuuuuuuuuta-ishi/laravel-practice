@@ -1,49 +1,14 @@
-<!doctype html>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@yield('title')</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
 <body>
-    <div class="container">
-            {{-- <x-side> </x-side> --}}
-        <div class="main">
-            @yield('content')
-        </div>
+    <div class="container mt-5">
+        @yield('content')
     </div>
 </body>
-<footer>
-    <!-- 省略 -->
-</footer>
-
-</html>
-
-<!doctype html>
-
-@stack('css')
-
-<style>
-    html,
-    body {
-        height: 100%;
-    }
-
-    .container {
-        flex-grow: 1;
-        box-sizing: border-box;
-        display: flex;
-        width: 100%;
-    }
-    .content {
-            margin: 20px;
-            padding: 1em;
-            color: #5d627b;
-            background: white;
-            border-top: solid 5px #5d627b;
-            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
-            width: 90%;
-            height: 100%;
-        }
-    .main {
-        width: 80%;
-        height: 100%;
-    }
-
-</style>
-
 </html>

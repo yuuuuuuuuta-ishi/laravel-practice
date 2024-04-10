@@ -22,7 +22,7 @@ class UserFactory extends Factory
     {
         $codeString =User::getLatestCode();
         log::info($codeString);
-        $codeInt = empty($codeString['code']) ? 1 : (int)$codeString['code'] + 1;
+        $codeInt = empty($codeString['user_id']) ? 1 : (int)$codeString['user_id'] + 1;
         log::info($codeInt);
         $code = str_pad($codeInt, 5, 0, STR_PAD_LEFT);
         $department = ['総務部','経理部', '人事部', '営業部', '開発部'];
@@ -31,7 +31,7 @@ class UserFactory extends Factory
         $post = $postList[array_rand($postList)];
         $is_admin = $post !== '一般社員';
         return [
-            'code' => $code
+            'user_id' => $code
             , 'name' => fake()->name
             , 'password' => fake()->password
             // , 'branch' => $branch[array_rand($branch)]

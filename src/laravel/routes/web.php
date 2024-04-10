@@ -3,9 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('/login', [LoginController::class, 'input']);
-Route::post('/top', [LoginController::class, 'output']);
+Route::get('/', 'App\Http\Controllers\LoginController@showLoginForm')->name('login');
+Route::post('/login', 'App\Http\Controllers\LoginController@login')->name('login.process');

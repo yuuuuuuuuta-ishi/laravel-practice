@@ -2,20 +2,23 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\CommonRequest;
+use Illuminate\Foundation\Http\FormRequest;
 
-class LoginRequest extends CommonRequest
+
+
+class LoginRequest extends FormRequest
 {
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
-     */
-    public function rules(): array
+    public function authorize()
+    {
+        return true;
+    }
+
+    public function rules()
     {
         return [
-            'employeeCode' => ['required ','string','max:10']
-            ,'password' => ['required ','string','max:50']
+            'user_id' => 'required|string',
+            'password' => 'required|string',
         ];
     }
+
 }

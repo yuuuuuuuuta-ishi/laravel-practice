@@ -2,37 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\User;
 use App\Http\Requests\LoginRequest;
-
-// ログ出力用
-use Illuminate\Support\Facades\Log;
+use App\Models\User;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
-    public function input(request $request)
+    public function showLoginForm()
     {
-        return view('input');
+        return view('login');
     }
 
-    public function output(LoginRequest $request)
+    public function login(LoginRequest $request)
     {
-        //リクエスト情報取得
-        $employeeCode = $request->input('employeeCode');
-        $password = $request->input('password');
+        $user = User::where('user_id', $request->input('user_id'))->where('password', $request->input('password'))->first();
 
-        //usersテーブルを検索
-        $user = User::getUserByUserIdAndPassword($employeeCode, $password);
-
-
-        //検索結果の判定
-        $message = '入力されたコードまたはパスワードが違います。';
-        if (is_null($user) === false || empty($user) === false) {
-            $message = 'ようこそ！' . $user->name . 'さん！';
+        if ($user) {
+            return view('home', ['username' => $user->name]);
+        } else {
+            return view('login', ['message' => '入力されたユーザIDまたはパスワードが違います。']);
         }
-        log::info($message);
-        return view('output', ['message' => $message]);
     }
 }
+
