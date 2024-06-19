@@ -6,10 +6,8 @@ RUN apt-get update && apt-get install -y libpq-dev \
     git \
     libzip-dev \
     zip \
-    && docker-php-ext-install zip pdo pgsql pdo_pgsql \
-    && pecl install xdebug \
-    && docker-php-ext-enable xdebug
+    && docker-php-ext-install zip pdo pgsql pdo_pgsql
 
 COPY ./ini /usr/local/etc/php/conf.d/
 
-WORKDIR /app/laravel
+WORKDIR /app/

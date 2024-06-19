@@ -28,7 +28,7 @@
 3. ターミナルを開き、docker-compose.ymlと同じ階層で``docker compose up -d``を実行する
 4. ``docker ps``でコンテナが起動していることを確認する
 5. ``docker compose exec -it <コンテナ名> bash``を実行しコンテナに入る
-6. ``composer create-project --prefer-dist laravel/laravel <任意のプロジェクト名>``を実行しlaravelのプロジェクトを作成する
+6. ``composer create-project --prefer-dist laravel/laravel``を実行しlaravelのプロジェクトを作成する
 7. [課題の提出方法](#課題の提出方法)の参考サイトより以下の手順を実行しリモートリポジトリへプッシュする
    1. ローカルリポジトリを作成する
    2. ローカルリポジトリにコミットする
