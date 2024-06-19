@@ -10,4 +10,4 @@ RUN apt-get update && apt-get install -y libpq-dev \
 
 COPY ./ini /usr/local/etc/php/conf.d/
 
-WORKDIR /app/
+WORKDIR /app/laravel
