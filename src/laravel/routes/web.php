@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 //デフォルト
 
 Route::get('/', function () {
@@ -16,8 +17,8 @@ Route::view("/hello", "hello");
 
 //problem1
 
-Route::view("/problem1_input", "problem1_input");
+Route::view("/problem1/input", "problem1/input");
 
-Route::post('/problem1_output', function () {
-    return view('problem1_output');
+Route::post('/problem1/output', function () {
+    return view('problem1/output');
 });
