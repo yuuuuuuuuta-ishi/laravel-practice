@@ -44,6 +44,7 @@
   - 参考サイト : <https://www.kagoya.jp/howto/rentalserver/webtrend/vscode/>
 - 各課題に取り組む前に``feature/{社員番号}/main``のブランチから``feature/{社員番号}/problem1``などの課題ごとの作業用ブランチを作成してください
 - 完了したらgithubのリモートリポジトリのサイトより、作成した作業ブランチから``feature/{社員番号}/main``へのプルリクエストを作成してください。
+- メールにて課題の完了報告のメールにて、プルリクエストのリンクの共有とレビューの依頼をしてください
 - gitに関して不安な場合は以下のサイトを読んでから研修に取り組むことをお勧めします
   - <https://backlog.com/ja/git-tutorial/>
 
