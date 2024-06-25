@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use app\Http\Controllers;
+use App\Http\Controllers\Problem2Controller;
 
 
 //デフォルト
@@ -29,4 +29,4 @@ Route::post('/problem1/output', function () {
 
 Route::view("/problem2/input", "problem2/input");
 
-Route::post('/problem2/output', "Problem2Controller@output");
+Route::post('/problem2/output', [Problem2Controller::class, "output"]);
