@@ -7,7 +7,7 @@
     <body>
         <h1>アプリケーション基礎</h1>
         <p>文字を入力してください。</p>
-        <form action="./output" method="post">
+        <form action="/problem2/output" method="post">
             @csrf
             <input type="text" name="message">
             <input type="submit" value="実行">

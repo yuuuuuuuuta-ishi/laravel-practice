@@ -27,6 +27,6 @@ Route::post('/problem1/output', function () {
 
 //problem2
 
-Route::view("/problem2/input", "problem2/input");
+Route::get("/problem2/input", [Problem2Controller::class, "input"]);
 
 Route::post('/problem2/output', [Problem2Controller::class, "output"]);
