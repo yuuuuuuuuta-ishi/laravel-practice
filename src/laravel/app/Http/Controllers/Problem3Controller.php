@@ -7,12 +7,25 @@ use Carbon\Carbon;
 
 class Problem3Controller
 {
-    //入力画面を表示する関数
+    /**
+     * 入力画面を表示する関数
+     * 
+     * @return Pespons 入力画面の表示
+     */ 
     public function input(){
         return view('/problem3/input');
     }
 
-    //出力画面を表示する関数
+    /**
+     * 出力画面を表示する関数
+     * 
+     * 干支と星座を判定して出力画面に渡している
+     * 
+     * @param Request $request 生年月日
+     * 
+     * @return Pespons 出力画面の表示　
+     * 生年月日、干支、星座を渡す
+     */
     public function output(Request $request){
         $birthday = new Carbon($request['birthday']);
 
@@ -26,7 +39,13 @@ class Problem3Controller
     }
 
 
-    //干支を判定する関数
+    /**
+     * 干支を判定する関数
+     * 
+     * @param int $year
+     * 
+     * @return string $eto
+     */
     private function judgeEto($year){
 
         //12の倍数の年が申年
@@ -35,7 +54,14 @@ class Problem3Controller
         return $eto;
     }
 
-    //星座のを判定する関数(12月を0月として扱う)
+    /**
+     * 星座のを判定する関数(12月を0月として扱う)
+     * 
+     * @param int $month
+     * @param int $day
+     * 
+     * @return string $seiza
+     */
     private function judgeSeiza($month, $day){
 
         //0月前半の射手座からスタート
