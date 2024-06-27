@@ -10,7 +10,8 @@ class Problem3Controller
     /**
      * 入力画面を表示する関数
      * 
-     * @return Pespons 入力画面の表示
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
+     * 入力画面の表示
      */ 
     public function input(){
         return view('/problem3/input');
@@ -23,8 +24,8 @@ class Problem3Controller
      * 
      * @param Request $request 生年月日
      * 
-     * @return Pespons 出力画面の表示　
-     * 生年月日、干支、星座を渡す
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
+     * 出力画面の表示,生年月日、干支、星座を渡す
      */
     public function output(Request $request){
         $birthday = new Carbon($request['birthday']);
