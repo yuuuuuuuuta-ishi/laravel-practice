@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 
 class Problem3Controller
@@ -13,36 +14,17 @@ class Problem3Controller
 
     //出力画面を表示する関数
     public function output(Request $request){
-        //yyyy-mm-dd形式
-        $birthday = $request['birthday'];
+        $birthday = new Carbon($request['birthday']);
 
-        //"-"で分割
-        $birthdayArray = $this->separateBirthday($birthday);
-        
         //干支の判定
-        $eto = $this->judgeEto($birthdayArray["year"]);
+        $eto = $this->judgeEto($birthday->year);
 
         //星座の判定
-        $seiza = $this->judgeSeiza($birthdayArray["month"], $birthdayArray["day"]);
+        $seiza = $this->judgeSeiza($birthday->month, $birthday->day);
 
-        return view('/problem3/output', compact('birthdayArray', 'eto', 'seiza'));
+        return view('/problem3/output', compact('birthday', 'eto', 'seiza'));
     }
 
-
-    //誕生日を年、月、日に分割する関数
-    private function separateBirthday($birthday){
-        //"-"で分割
-        $birthdayTemp = explode('-', $birthday);
-
-        //連想配列に移し替え
-        $birthdayArray =array(
-            "year"=>$birthdayTemp[0],
-            "month"=>$birthdayTemp[1],
-            "day"=>$birthdayTemp[2]
-        );
-
-        return $birthdayArray;
-    }
 
     //干支を判定する関数
     private function judgeEto($year){
