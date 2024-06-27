@@ -8,7 +8,7 @@
         <h1>Controller基礎</h1>
         <hr>
         <h2>
-            「{{ $birthdayArray["year"] }}年{{ $birthdayArray["month"] }}月{{ $birthdayArray["day"] }}日生まれの方は{{ $eto }}年の{{ $seiza }}座です。」
+            「{{ $birthday->format('Y年m月d日') }}生まれの方は{{ $eto }}年の{{ $seiza }}座です。」
         </h2>
     </body>
 </html>
