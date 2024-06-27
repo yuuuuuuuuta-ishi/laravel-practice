@@ -71,7 +71,6 @@ class Problem3Controller
         //月の中で星座が切り替わる日("<"を使用する)
         $border = array(22, 20, 19, 21, 20, 21, 22, 23, 23, 23, 24, 23);
 
-        $seiza;
         if($day < $border[$month % 12]){
             $seiza = $seizaArray[$month %12];
         }else{
