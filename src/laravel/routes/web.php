@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Problem2Controller;
 use App\Http\Controllers\Problem3Controller;
+use App\Http\Controllers\Problem4Controller;
 
 
 //デフォルト
@@ -38,3 +39,10 @@ Route::post('/problem2/output', [Problem2Controller::class, "output"]);
 Route::get("/problem3/input", [Problem3Controller::class, "input"]);
 
 Route::post('/problem3/output', [Problem3Controller::class, "output"]);
+
+
+//problem4
+
+Route::get("/problem4/input", [Problem4Controller::class, "input"]);
+
+Route::post('/problem4/output', [Problem4Controller::class, "output"]);
