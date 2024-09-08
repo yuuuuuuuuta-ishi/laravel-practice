@@ -95,7 +95,7 @@ root/
 
 ### configurationDiagram
 ---
-<img src="src\laravel\resources\configurationDiagram.png" width="80%">
+<img src="docs/構成図.png" width="80%">
 
 ---
 
